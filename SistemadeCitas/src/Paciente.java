@@ -1,21 +1,19 @@
 public class Paciente extends Persona{
 
-    private String motivo;
+    private int idPaciente;
 
 
-    public Paciente(String nombre, int id, String motivo) {
-        this.motivo = motivo;
-
-
+    //Constructor
+    public Paciente(String nombre, int edad, int idPaciente) {
+        super(nombre, edad);
+        this.idPaciente = idPaciente;
+    }
+    //Getter y setter
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public String getMotivo() {
-        return motivo;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-
-
 }
