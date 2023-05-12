@@ -10,11 +10,11 @@ public class Doctor extends Persona {
     private String especialidad;
     private int idDoctor;
 
+   //Arraylist
     private static ArrayList<Doctor> doctores = new ArrayList<>();
 
 
     // Constructor
-
 
     public Doctor(String nombre, String especialidad, int idDoctor) {
         super(nombre);
@@ -39,7 +39,7 @@ public class Doctor extends Persona {
         this.idDoctor = idDoctor;
     }
 
-    //Metodos
+    //Metodo para buscar Doctor
     public static Doctor buscarDoctor(int idDoctor) {
         for (Doctor doctor : doctores) {
             if (idDoctor == doctor.getIdDoctor()) {
@@ -49,16 +49,18 @@ public class Doctor extends Persona {
         return null;
     }
 
-    //
+    //Metodo para guardar el nuevo doctor en el arreglo de doctores
     public static void agregarDoctor(Doctor doctor) {
         doctores.add(doctor);
     }
 
+    //Metodo para mostrar la informacion en el archivo CSV
     public String mostrar() {
         return "ID: " + idDoctor + "\nNombre: " + getNombre()
                 + "\nEspecialidad: " + especialidad;
     }
 
+    //Metodo para guardar archivo CSV
     public static void saveRecord(String nombre, int id, String especialidad, String filepath) {
         try {
             FileWriter fw = new FileWriter(filepath, true);

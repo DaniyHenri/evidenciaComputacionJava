@@ -4,19 +4,19 @@ import java.util.UUID;
 
 public class Usuario {
 
-    private String nombre;
+    private String us;
     private String password;
 
     public Usuario(String nom, String pass) {
-        nombre = nom;
+        us = nom;
         password = pass;
     }
 
     @Override
     public boolean equals(Object objeto) {
         if (objeto instanceof Usuario) {
-            Usuario otroAdmin = (Usuario) objeto;
-            if (nombre.equals(otroAdmin.nombre) && password.equals(otroAdmin.password))
+            Usuario newAdmin = (Usuario) objeto;
+            if (us.equals(newAdmin.us) && password.equals(newAdmin.password))
                 return true;
             else
                 return false;
@@ -31,19 +31,22 @@ public class Usuario {
     public static boolean validarAcceso( ) {
         System.out.println("Accediendo al Programa");
         System.out.print("Usuario: ");
-        String nombre = scanner.nextLine();
+        String us = scanner.nextLine();
         System.out.print("Password: ");
         String password = scanner.nextLine();
         System.out.println("--------------------------------------------------------");
 
-        Usuario admin = new Usuario(nombre, password);
+        Usuario admin = new Usuario(us, password);
 
         return administradores.contains(admin);
 
     }
 
-    public static void crearAdmins() {
-        administradores.add(new Usuario("Admin", "007"));
-        administradores.add(new Usuario("SuperAdmin", "ajit0oCt5!"));
+    public static void crearAdministradores() {
+        administradores.add(new Usuario("Daniel", "000"));
+        administradores.add(new Usuario("Luis", "111"));
     }
+
+    //Metodo para agregar usuario
+
 }

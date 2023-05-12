@@ -11,11 +11,8 @@ import java.util.Scanner;
 
 public class Menu {
 
-
-
-
     public  void mostrarMenu() throws ParseException, CitaExistenteException {
-        Usuario.crearAdmins();
+        Usuario.crearAdministradores();
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
         do {
