@@ -1,14 +1,30 @@
+import javax.swing.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+
 public class Cita {
+
+
 
     private Doctor doctor;
     private Paciente paciente;
     private Date fecha;
     private String hora;
     private String motivo;
+
     private int idCita;
 
+    private static ArrayList<Cita> citas = new ArrayList<>();
+
+
+
+
+
     //Constructor
+
     public Cita(Doctor doctor, Paciente paciente, Date fecha, String hora, String motivo, int idCita) {
         this.doctor = doctor;
         this.paciente = paciente;
@@ -16,7 +32,9 @@ public class Cita {
         this.hora = hora;
         this.motivo = motivo;
         this.idCita = idCita;
+
     }
+
 
     //Getter y Setter
 
@@ -68,4 +86,48 @@ public class Cita {
     public void setIdCita(int idCita) {
         this.idCita = idCita;
     }
+
+    //Metodo para agregar citas
+    public static void agregarCita(Cita cita) throws CitaExistenteException {
+        if (citas.contains(cita)) throw new CitaExistenteException("La cita ya existe en la agenda.");
+        citas.add(cita);
+    }
+    public static ArrayList<Cita> buscarCitasPorDoctor(int idDoctor) {
+        ArrayList<Cita> citasDoctor = new ArrayList<>();
+        for (Cita cita : citas) {
+            if (cita.getDoctor().getIdDoctor() == idDoctor) {
+                citasDoctor.add(cita);
+            }
+        }
+        return citasDoctor;
+    }
+
+    //metodos para guardar datos de cita
+    public String mostrar() {
+        return "ID: " + idCita + "\nNombre: " + getDoctor()
+                + "\nPaciente: " + getPaciente() + "\nFecha: " + getFecha() + "\nHora: " + getHora() + "\nMotivo: " + getMotivo();
+    }
+
+    public static void saveRecord(Doctor Doctor, Paciente Paciente, int idCita, Date fecha, String Hora, String motivo, String filepath) {
+        try {
+            FileWriter fw = new FileWriter(filepath, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            pw.println("\nDoctor: "+Doctor.getNombre() + "\nPaciente: " + Paciente.getNombre() + "\nNumero identificador de la cita: " + idCita + "\nFecha: " + fecha + "\nHora: " + Hora  + "\nMotivo de la cita: " + motivo);
+
+            pw.flush();
+            pw.close();
+
+            JOptionPane.showMessageDialog(null, "Record Saved!");
+        } catch (Exception E) {
+            JOptionPane.showMessageDialog(null, "Record Not Saved!");
+
+        }
+
+
+    }
+
+
+
 }

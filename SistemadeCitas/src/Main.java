@@ -1,13 +1,8 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
+import java.text.ParseException;
 
 public class Main {
-
-    public static void main(String[] args) {
-        Administrador administrador = new Administrador();
-        administrador.mostrarMenu();
-
-        }
+    public static void main(String[] args) throws ParseException, CitaExistenteException {
+        Menu menu = new Menu();
+        menu.mostrarMenu();
     }
-
+}
